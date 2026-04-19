@@ -10,13 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LogRouteImport } from './routes/log'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AttributesRouteImport } from './routes/attributes'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AttributesIdRouteImport } from './routes/attributes.$id'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -29,43 +46,129 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LogRoute = LogRouteImport.update({
+  id: '/log',
+  path: '/log',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttributesRoute = AttributesRouteImport.update({
+  id: '/attributes',
+  path: '/attributes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AttributesIdRoute = AttributesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AttributesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/attributes': typeof AttributesRouteWithChildren
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/log': typeof LogRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
+  '/attributes/$id': typeof AttributesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/attributes': typeof AttributesRouteWithChildren
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/log': typeof LogRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
+  '/attributes/$id': typeof AttributesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/attributes': typeof AttributesRouteWithChildren
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/log': typeof LogRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
+  '/attributes/$id': typeof AttributesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/onboarding' | '/signup'
+  fullPaths:
+    | '/'
+    | '/attributes'
+    | '/dashboard'
+    | '/history'
+    | '/log'
+    | '/login'
+    | '/onboarding'
+    | '/profile'
+    | '/settings'
+    | '/signup'
+    | '/attributes/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/onboarding' | '/signup'
-  id: '__root__' | '/' | '/login' | '/onboarding' | '/signup'
+  to:
+    | '/'
+    | '/attributes'
+    | '/dashboard'
+    | '/history'
+    | '/log'
+    | '/login'
+    | '/onboarding'
+    | '/profile'
+    | '/settings'
+    | '/signup'
+    | '/attributes/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/attributes'
+    | '/dashboard'
+    | '/history'
+    | '/log'
+    | '/login'
+    | '/onboarding'
+    | '/profile'
+    | '/settings'
+    | '/signup'
+    | '/attributes/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AttributesRoute: typeof AttributesRouteWithChildren
+  DashboardRoute: typeof DashboardRoute
+  HistoryRoute: typeof HistoryRoute
+  LogRoute: typeof LogRoute
   LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
 }
 
@@ -76,6 +179,20 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -92,6 +209,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/log': {
+      id: '/log'
+      path: '/log'
+      fullPath: '/log'
+      preLoaderRoute: typeof LogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attributes': {
+      id: '/attributes'
+      path: '/attributes'
+      fullPath: '/attributes'
+      preLoaderRoute: typeof AttributesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,13 +244,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/attributes/$id': {
+      id: '/attributes/$id'
+      path: '/$id'
+      fullPath: '/attributes/$id'
+      preLoaderRoute: typeof AttributesIdRouteImport
+      parentRoute: typeof AttributesRoute
+    }
   }
 }
 
+interface AttributesRouteChildren {
+  AttributesIdRoute: typeof AttributesIdRoute
+}
+
+const AttributesRouteChildren: AttributesRouteChildren = {
+  AttributesIdRoute: AttributesIdRoute,
+}
+
+const AttributesRouteWithChildren = AttributesRoute._addFileChildren(
+  AttributesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AttributesRoute: AttributesRouteWithChildren,
+  DashboardRoute: DashboardRoute,
+  HistoryRoute: HistoryRoute,
+  LogRoute: LogRoute,
   LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
