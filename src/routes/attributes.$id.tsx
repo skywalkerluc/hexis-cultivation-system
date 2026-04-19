@@ -24,7 +24,7 @@ export const Route = createFileRoute("/attributes/$id")({
   loader: ({ params }) => {
     const attribute = getAttribute(params.id);
     if (!attribute) throw notFound();
-    return { attribute };
+    return { attribute } as { attribute: NonNullable<ReturnType<typeof getAttribute>> };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
