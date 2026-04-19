@@ -51,7 +51,7 @@ export const Route = createFileRoute("/attributes/$id")({
 });
 
 function AttributeDetailPage() {
-  const { attribute } = Route.useLoaderData();
+  const { attribute } = Route.useLoaderData() as { attribute: NonNullable<ReturnType<typeof getAttribute>> };
   const related = events.filter((e) => e.effects.some((f) => f.attribute === attribute.id));
   const color =
     attribute.status === "improving"
